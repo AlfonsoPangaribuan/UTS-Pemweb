@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Halaman Formulir Pendaftaran</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://alfonsopangaribuan.github.io/PrakTugas2/assets/profile.jpeg" type="image/png">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        &#128205; Halaman Utama <!-- 🏠 -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">
+                        &#9997; Formulir <!-- 📝 -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="table.html">
+                        &#128202; Tabel <!-- 📊 -->
+                    </a>
+                </li>
+            </ul>
+        </nav> 
+        <h1 style="text-align: center; margin-top: 10px;"><strong>Formulir Pendaftaran</strong></h1>
+    </header>
+
+    <div class="container">
+    <form action="table.html" method="GET" onsubmit="submitForm(event)">
+      <div class="form-group">
+        <label for="nama"><strong>Nama:</strong></label>
+        <input type="text" class="form-control" id="nama" name="nama" required>
+      </div>
+      <div class="form-group">
+        <label for="email"><strong>Email:</strong></label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password"><strong>Password:</strong></label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <label for="telepon"><strong>Telepon:</strong></label>
+        <input type="text" class="form-control" id="telepon" name="telepon">
+      </div>
+      <div class="form-group">
+        <label for="tanggal_lahir"><strong>Tanggal Lahir:</strong></label>
+        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
+      </div>
+      <div class="form-group">
+        <label>Kelas Pemrograman:</label><br>
+        <input type="radio" name="kelas" value="A"><strong>A</strong> 
+        <input type="radio" name="kelas" value="B"><strong>B</strong> 
+      </div>
+      <button type="submit" class="btn btn-primary"><strong>Submit</strong></button>
+    </form>
+
+    <script>
+      function submitForm(event) {
+        event.preventDefault();
+        window.location.href = 'table.html?' + new URLSearchParams(new FormData(event.target)).toString();
+      }
+    </script>
+  </div>
+  <br>
+</body>
+    <footer>
+        <p>&copy; 2024 UTS Pemweb 122140206</p>
+    </footer>
+</html>

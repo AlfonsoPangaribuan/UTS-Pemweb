@@ -1,0 +1,255 @@
+header {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Times New Roman', serif;
+    margin: 0;
+    background: linear-gradient(to bottom right, #d3d3d3, #f5f5f5); 
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    list-style: none;
+    margin: 0;
+    padding: 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+/* Style Default untuk Link di Navbar */
+.nav-link {
+    color: #fff; /* Warna teks default */
+    text-decoration: none;
+    padding: 5px 10px;
+    display: inline-flex; /* Ganti menjadi inline-flex agar teks dan ikon sejajar */
+    align-items: center;
+    transition: background-color 0.3s ease; /* Animasi untuk perubahan warna */
+}
+
+/* Hover Effect */
+.nav-link:hover {
+    background-color: #838782; /* Warna background saat hover */
+    border-radius: 5px; /* Tambahkan border radius untuk efek */
+}
+
+/* Menandai Halaman Aktif */
+.nav-item .nav-link.active {
+    background-color: #474e46; /* Warna khusus untuk halaman aktif */
+    color: #fff; /* Warna teks halaman aktif */
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+.section-image, .section-biography, .section-quotes {
+    padding: 20px;
+    margin: 10px;
+    text-align: justify;
+}
+
+/* Style Warna */
+.hijau-muda {
+    border-right: 3px solid rgba(0, 0, 0, 0.5); /* Garis pembatas vertikal di kanan */
+}
+
+.hijau-tua {
+    border-right: 3px solid rgba(0, 0, 0, 0.5); /* Garis pembatas vertikal di kanan */
+}
+
+/* Media Queries Spesifik */
+/* XS: Layar sangat kecil (mobile) */
+@media (max-width: 575.98px) {
+    .section-image, .section-biography, .section-quotes {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+}
+
+/* SM: Layar kecil (mobile landscape) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .section-image, .section-biography, .section-quotes {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    nav ul {
+        justify-content: space-around;
+    }
+}
+
+/* MD: Layar sedang (tablet) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .section-image, .section-biography, .section-quotes {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    nav ul {
+        justify-content: space-between;
+        padding: 1rem 3rem;
+    }
+}
+
+/* LG: Layar besar (desktop) */
+@media (min-width: 992px) {
+    .section-image {
+        width: 18%;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 1%;
+    }
+
+    .section-biography {
+        width: 48%;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 1%;
+    }
+
+    .section-quotes {
+        width: 18%;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 1%;
+    }
+}
+
+/* Scrollbar Custom */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #d8efca;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #31442e;
+    border-radius: 20px;
+    border: 3px solid #596f51;
+}
+
+/* Style Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 2px solid #6ea965;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #6ea965;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #4a7943;
+}
+
+/* Style Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #4c4b4b;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: #808080;
+  }
+  th {
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    color: white;
+  }
+.timeline {
+    position: relative;
+    width: 125px;
+    padding: 20px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: black;
+}
+.timeline-item {
+    position: relative;
+    margin: 20px 0;
+    text-align: center;
+}
+.timeline-item img {
+    width: 100%;
+    height: auto;
+    border: 5px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: rotate(-5deg);
+}
+.timeline-item:nth-child(even) img {
+    transform: rotate(5deg);
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background-color: #f0e68c;
+    z-index: 1;
+}
+
+.btn-primary {
+    background-color: rgb(7, 41, 110); /* Dark grey */
+    border-color: rgb(2, 15, 81); /* Match border color */
+}
+
+.btn-primary:hover {
+    background-color: rgb(99, 100, 186); /* Light grey on hover */
+    border-color: rgb(61, 61, 156); /* Match border color on hover */
+}
+
+#reset-button {
+    margin-bottom: 20px; /* Space below the button */
+}

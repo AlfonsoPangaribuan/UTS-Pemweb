@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halaman Data Tabel</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://alfonsopangaribuan.github.io/PrakTugas2/assets/profile.jpeg" type="image/png">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            &#128205; Halaman Utama <!-- 🏠 -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="form.html">
+            &#9997; Formulir <!-- 📝 -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">
+            &#128202; Tabel <!-- 📊 -->
+          </a>
+        </li>
+      </ul>
+    </nav>  
+    <h1 style="text-align: center; margin-top: 10px;"><strong>Tabel Pendaftaran</strong></h1>      
+  </header>
+
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Telepon</th>
+          <th>Tanggal Lahir</th>
+          <th>Kelas</th>
+        </tr>
+      </thead>
+      <tbody id="data-table">
+      </tbody>
+    </table>
+
+    <script>
+      // Fungsi untuk menghasilkan nama acak
+      function generateRandomName() {
+        const names = ['John', 'Jane', 'Mary', 'Michael', 'David', 'Emily', 'Chris', 'Sarah', 'Paul', 'Anna'];
+        const surnames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Miller', 'Davis', 'Garcia', 'Martinez', 'Wilson'];
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        const randomSurname = surnames[Math.floor(Math.random() * surnames.length)];
+        return `${randomName} ${randomSurname}`;
+      }
+
+      // Fungsi untuk menghasilkan email acak
+      function generateRandomEmail(name) {
+        const domains = ['example.com', 'mail.com', 'test.com', 'dummy.com'];
+        const randomDomain = domains[Math.floor(Math.random() * domains.length)];
+        return `${name.toLowerCase().replace(' ', '.')}@${randomDomain}`;
+      }
+
+      // Fungsi untuk menghasilkan nomor telepon acak
+      function generateRandomPhone() {
+        const prefix = '0812';
+        const randomNumber = Math.floor(1000000 + Math.random() * 9000000);
+        return `${prefix}${randomNumber}`;
+      }
+
+      // Fungsi untuk menghasilkan tanggal lahir acak
+      function generateRandomDate() {
+        const start = new Date(1980, 0, 1);
+        const end = new Date(2000, 11, 31);
+        const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+        return randomDate.toISOString().split('T')[0];
+      }
+
+      // Fungsi untuk menghasilkan kelas acak
+      function generateRandomClass() {
+        return Math.random() < 0.5 ? 'A' : 'B';
+      }
+
+      // Membuat data dummy acak
+      const dataDummy = Array.from({ length: 50 }, () => {
+        const name = generateRandomName();
+        return {
+          nama: name,
+          email: generateRandomEmail(name),
+          telepon: generateRandomPhone(),
+          tanggal_lahir: generateRandomDate(),
+          kelas: generateRandomClass(),
+        };
+      });
+
+      const dataTable = document.getElementById('data-table');
+
+      // Fungsi untuk menambahkan data ke tabel
+      function populateTable(data) {
+        data.forEach((row, index) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${index + 1}</td><td>${row.nama}</td><td>${row.email}</td><td>${row.telepon}</td><td>${row.tanggal_lahir}</td><td>${row.kelas}</td>`;
+          dataTable.appendChild(tr);
+        });
+      }
+
+      // Ambil data dari localStorage jika ada
+      const savedData = JSON.parse(localStorage.getItem('dataPendaftar')) || [];
+      populateTable([...dataDummy, ...savedData]);
+
+      // Tambahkan data dari URL jika ada
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('nama')) {
+        const newData = {
+          nama: params.get('nama'),
+          email: params.get('email'),
+          telepon: params.get('telepon'),
+          tanggal_lahir: params.get('tanggal_lahir'),
+          kelas: params.get('kelas'),
+        };
+
+        // Cek apakah data baru sudah ada berdasarkan email atau telepon
+        const isDuplicate = savedData.some(data =>
+          data.email === newData.email || data.telepon === newData.telepon
+        );
+
+        if (!isDuplicate) {
+          // Simpan data baru ke localStorage
+          savedData.push(newData);
+          localStorage.setItem('dataPendaftar', JSON.stringify(savedData));
+
+          // Tambahkan data baru ke tabel
+          populateTable([newData]);
+        }
+      }
+    </script>
+  </div>
+  <br>
+</body>
+<footer>
+  <p>&copy; 2024 UTS Pemweb 122140206</p>
+</footer>
+</html>
